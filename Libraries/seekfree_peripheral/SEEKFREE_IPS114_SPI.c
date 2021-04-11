@@ -550,7 +550,7 @@ void ips114_showfloat(uint16 x,uint16 y,double dat,uint8 num,uint8 pointnum)
 // @return		void
 // @since		v1.0
 // Sample usage:				ips114_displayimage032(mt9v03x_csi_image[0], MT9V03X_CSI_W, MT9V03X_CSI_H)//显示灰度摄像头 图像
-// @note		图像的宽度如果超过液晶的宽度，则自动进行缩放显示。这样可以显示全视野
+// @note		图像的宽度如果超过液晶的宽度，则会爆炸
 //-------------------------------------------------------------------------------------------------------------------
 void ips114_displayimage032(uint8 *p, uint16 width, uint16 height) 
 {
