@@ -554,23 +554,18 @@ void ips114_showfloat(uint16 x,uint16 y,double dat,uint8 num,uint8 pointnum)
 //-------------------------------------------------------------------------------------------------------------------
 void ips114_displayimage032(uint8 *p, uint16 width, uint16 height) 
 {
-	uint32 i,j;
+	uint16 i,j;
 
 	uint16 color = 0;
 	uint16 temp = 0;
 
-	uint16 coord_x = 0;
-	uint16 coord_y = 0;
+	ips114_set_region(0,0,width-1,height-1);
 
-	coord_x = width>IPS114_X_MAX?IPS114_X_MAX:width;
-	coord_y = height>IPS114_Y_MAX?IPS114_Y_MAX:height;
-	ips114_set_region(0,0,coord_x-1,coord_y-1);
-
-	for(j=0;j<coord_y;j++)
+	for(j=0;j<height;j++)
 	{
-		for(i=0;i<coord_x;i++)
+		for(i=0;i<width;i++)
 		{
-			temp = *(p+j*width+i*width/coord_x);							// 读取像素点
+			temp = *(p+j*width+i);							// 读取像素点
 			color=(0x001f&((temp)>>3))<<11;
 			color=color|(((0x003f)&((temp)>>2))<<5);
 			color=color|(0x001f&((temp)>>3));

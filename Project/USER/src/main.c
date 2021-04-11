@@ -45,12 +45,18 @@
 // **************************** 变量定义 ****************************
 uint16 loop_count = 0;
 uint8 io_input_state = 0;
+
+uint16 send_index = 0;
 // **************************** 变量定义 ****************************
 
 // **************************** 代码区域 ****************************
 int main(void)
 {
 	board_init(true);																// 初始化 debug 输出串口
+	seekfree_wireless_init();
+	ips114_init();
+	mt9v03x_init();
+	// systick_delay_ms(1000);
 
 	//此处编写用户代码(例如：外设初始化代码等)
 	gpio_init(KEY, GPI, GPIO_HIGH, GPI_PULL_UP);									// 初始化引脚为上拉输入 默认高电平
@@ -58,23 +64,19 @@ int main(void)
 	gpio_init(LED2, GPO, GPIO_HIGH, GPO_PUSH_PULL);									// 初始化引脚为推挽输出 默认高电平
 	//此处编写用户代码(例如：外设初始化代码等)
 
+	seekfree_wireless_send_buff((uint8 *)"\r\nSEEKFREE wireless test.\n");		// 发送测试信息
+
+	// ips114_display_chinese(0,0,16,chinese_test[0],4,RED);
+	// ips114_displayimage032(gImage_qq, 40, 40);
+	// ips114_displayimage8660_zoom(gImage_qq, 40, 40, 80, 80);
+
 	while(1)
 	{
-		if(loop_count < 50)															// 500ms
-			gpio_set(LED1, 1);														// 输出高 灭灯
-		else if(loop_count >= 50 && loop_count < 100)								// 500ms
-			gpio_set(LED1, 0);														// 输出低 亮灯
-		else
-			loop_count = 0;															// 清空计时
-
-		io_input_state = gpio_get(KEY);												// 获取输入引脚电平
-		if(io_input_state)															// 高电平
-			gpio_set(LED2, 1);														// 输出低 灭灯
-		else																		// 高电低
-			gpio_set(LED2, 0);														// 输出高 亮灯
-
-		loop_count++;																// 计时自增
-		systick_delay_ms(10);														// 时间间隔 10ms
+	ips114_displayimage032(mt9v03x_image[0], MT9V03X_W, MT9V03X_H);
+	// 	if(mt9v03x_finish_flag)
+	// 	{	
+	// 		mt9v03x_finish_flag = 0;
+	// 	}
 	}
 }
 // **************************** 代码区域 ****************************

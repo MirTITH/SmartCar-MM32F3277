@@ -44,6 +44,6 @@ extern uint16 wireless_rx_index;
 
 void		wireless_uart_callback		(void);
 void		seekfree_wireless_init		(void);
-uint32		seekfree_wireless_send_buff	(uint8 *buff, uint32 len);
+uint32		seekfree_wireless_send_buff	(uint8 *buff);
 
 #endif 

@@ -59,7 +59,7 @@
 #define IPS114_PENCOLOR			RED
 
 //¶¨Òå±³¾°ÑÕÉ«
-#define IPS114_BGCOLOR			WHITE
+#define IPS114_BGCOLOR			0x66ccff
 
 #define IPS114_W				135
 #define IPS114_H				240

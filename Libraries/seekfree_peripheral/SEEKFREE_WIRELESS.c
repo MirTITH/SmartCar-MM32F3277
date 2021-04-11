@@ -29,6 +29,7 @@
 #include "zf_gpio.h"
 #include "zf_uart.h"
 #include "SEEKFREE_WIRELESS.h"
+#include <string.h>
 
 uint8 wireless_rx_buffer[WIRELESS_BUFFER_SIZE];
 uint16 wireless_rx_index = 0;
@@ -73,8 +74,9 @@ void seekfree_wireless_init (void)
 // Sample usage:
 // @note
 //-------------------------------------------------------------------------------------------------------------------
-uint32 seekfree_wireless_send_buff(uint8 *buff, uint32 len)
+uint32 seekfree_wireless_send_buff(uint8 *buff)
 {
+	uint32 len = strlen(buff);
 	while(len>30)
 	{
 		if(gpio_get(RTS_PIN))
