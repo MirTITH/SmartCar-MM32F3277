@@ -8,6 +8,8 @@
 		"board.h": "c",
 		"seekfree_oled.h": "c",
 		"seekfree_ips114_spi.h": "c",
-		"seekfree_mt9v03x.h": "c"
+		"seekfree_mt9v03x.h": "c",
+		"timer_us.h": "c",
+		"zf_camera.h": "c"
 	}
 }

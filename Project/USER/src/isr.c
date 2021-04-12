@@ -20,6 +20,8 @@
 #include "headfile.h"
 #include "isr.h"
 
+extern unsigned long long TimeCountPeriod;
+
 void TIM1_UP_IRQHandler (void)
 {
 	uint32 state = TIM1->SR;														// ¶ÁÈ¡ÖÐ¶Ï×´Ì¬
@@ -66,6 +68,7 @@ void TIM7_IRQHandler (void)
 {
 	uint32 state = TIM7->SR;														// ¶ÁÈ¡ÖÐ¶Ï×´Ì¬
 	TIM7->SR &= ~state;																// Çå¿ÕÖÐ¶Ï×´Ì¬
+	TimeCountPeriod++;
 }
 
 void UART1_IRQHandler(void)

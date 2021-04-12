@@ -18,6 +18,7 @@
 ********************************************************************************************************************/
 
 #include "headfile.h"
+#include "Timer_us.h"
 
 // *************************** 例程说明 ***************************
 // 
@@ -43,10 +44,10 @@
 // **************************** 宏定义 ****************************
 
 // **************************** 变量定义 ****************************
-uint16 loop_count = 0;
-uint8 io_input_state = 0;
 
-uint16 send_index = 0;
+char time_str[30];
+uint32 camera_frame = 0;
+
 // **************************** 变量定义 ****************************
 
 // **************************** 代码区域 ****************************
@@ -54,17 +55,20 @@ int main(void)
 {
 	board_init(true);																// 初始化 debug 输出串口
 	seekfree_wireless_init();
+	Timer_us_init();
 	ips114_init();
 	mt9v03x_init();
-	// systick_delay_ms(1000);
+	systick_delay_ms(1000);
 
 	//此处编写用户代码(例如：外设初始化代码等)
 	gpio_init(KEY, GPI, GPIO_HIGH, GPI_PULL_UP);									// 初始化引脚为上拉输入 默认高电平
 	gpio_init(LED1, GPO, GPIO_HIGH, GPO_PUSH_PULL);									// 初始化引脚为推挽输出 默认高电平
 	gpio_init(LED2, GPO, GPIO_HIGH, GPO_PUSH_PULL);									// 初始化引脚为推挽输出 默认高电平
+	// gpio_init(A5, GPO, GPIO_LOW, GPO_PUSH_PULL);
+	pwm_init(TIM_2, TIM_2_CH1_A00, 440, PWM_DUTY_MAX / 2);
 	//此处编写用户代码(例如：外设初始化代码等)
 
-	seekfree_wireless_send_buff((uint8 *)"\r\nSEEKFREE wireless test.\n");		// 发送测试信息
+	seekfree_wireless_send_buff((uint8 *)"\n");		// 发送测试信息
 
 	// ips114_display_chinese(0,0,16,chinese_test[0],4,RED);
 	// ips114_displayimage032(gImage_qq, 40, 40);
@@ -72,11 +76,25 @@ int main(void)
 
 	while(1)
 	{
-	ips114_displayimage032(mt9v03x_image[0], MT9V03X_W, MT9V03X_H);
-	// 	if(mt9v03x_finish_flag)
-	// 	{	
-	// 		mt9v03x_finish_flag = 0;
-	// 	}
+		// sprintf(time_str, "%lld\n", Timer_us_Get());
+		// seekfree_wireless_send_buff(time_str);		// 发送测试信息
+		// systick_delay_ms(10);
+
+	// ips114_displayimage032(mt9v03x_image[0], MT9V03X_W, MT9V03X_H);
+		if(mt9v03x_finish_flag)
+		{	
+			camera_frame++;
+			// ips114_displayimage032(mt9v03x_image[0], MT9V03X_W, MT9V03X_H);
+			mt9v03x_finish_flag = 0;
+			// if (camera_frame % 250 == 0)
+			// {
+			// sprintf(time_str, "%lld\n", Timer_us_Get() / 1000);
+			// seekfree_wireless_send_buff(time_str);
+			// }
+		}
+		// sprintf(time_str, "%lu\n", camera_frame);
+		// seekfree_wireless_send_buff(time_str);
+		
 	}
 }
 // **************************** 代码区域 ****************************
