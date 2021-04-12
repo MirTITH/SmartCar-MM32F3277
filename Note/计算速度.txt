@@ -1,0 +1,7 @@
+unsigned long long	8474723
+long long			8474450
+long				8244341
+int		8246175
+short	79208
+double	781277
+float	586897

@@ -45,8 +45,9 @@
 
 // **************************** 变量定义 ****************************
 
-char time_str[30];
+
 uint32 camera_frame = 0;
+float a = 0;
 
 // **************************** 变量定义 ****************************
 
@@ -64,11 +65,11 @@ int main(void)
 	gpio_init(KEY, GPI, GPIO_HIGH, GPI_PULL_UP);									// 初始化引脚为上拉输入 默认高电平
 	gpio_init(LED1, GPO, GPIO_HIGH, GPO_PUSH_PULL);									// 初始化引脚为推挽输出 默认高电平
 	gpio_init(LED2, GPO, GPIO_HIGH, GPO_PUSH_PULL);									// 初始化引脚为推挽输出 默认高电平
-	// gpio_init(A5, GPO, GPIO_LOW, GPO_PUSH_PULL);
-	pwm_init(TIM_2, TIM_2_CH1_A00, 440, PWM_DUTY_MAX / 2);
+	tim_interrupt_init_ms(TIM_2, 1000, 0, 1);
+	// pwm_init(TIM_2, TIM_2_CH1_A00, 440, PWM_DUTY_MAX / 2);
 	//此处编写用户代码(例如：外设初始化代码等)
 
-	seekfree_wireless_send_buff((uint8 *)"\n");		// 发送测试信息
+	// seekfree_wireless_send_buff((uint8 *)"\n");		// 发送测试信息
 
 	// ips114_display_chinese(0,0,16,chinese_test[0],4,RED);
 	// ips114_displayimage032(gImage_qq, 40, 40);
@@ -76,22 +77,23 @@ int main(void)
 
 	while(1)
 	{
+		a += 0.1;
 		// sprintf(time_str, "%lld\n", Timer_us_Get());
 		// seekfree_wireless_send_buff(time_str);		// 发送测试信息
 		// systick_delay_ms(10);
 
 	// ips114_displayimage032(mt9v03x_image[0], MT9V03X_W, MT9V03X_H);
-		if(mt9v03x_finish_flag)
-		{	
-			camera_frame++;
-			// ips114_displayimage032(mt9v03x_image[0], MT9V03X_W, MT9V03X_H);
-			mt9v03x_finish_flag = 0;
-			// if (camera_frame % 250 == 0)
-			// {
-			// sprintf(time_str, "%lld\n", Timer_us_Get() / 1000);
-			// seekfree_wireless_send_buff(time_str);
-			// }
-		}
+		// if(mt9v03x_finish_flag)
+		// {	
+		// 	camera_frame++;
+		// 	// ips114_displayimage032(mt9v03x_image[0], MT9V03X_W, MT9V03X_H);
+		// 	mt9v03x_finish_flag = 0;
+		// 	// if (camera_frame % 250 == 0)
+		// 	// {
+		// 	// sprintf(time_str, "%lld\n", Timer_us_Get() / 1000);
+		// 	// seekfree_wireless_send_buff(time_str);
+		// 	// }
+		// }
 		// sprintf(time_str, "%lu\n", camera_frame);
 		// seekfree_wireless_send_buff(time_str);
 		

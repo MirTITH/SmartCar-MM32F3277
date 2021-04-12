@@ -19,8 +19,11 @@
 
 #include "headfile.h"
 #include "isr.h"
+#include <stdlib.h>
 
 extern unsigned long long TimeCountPeriod;
+extern float a;
+char str[30];
 
 void TIM1_UP_IRQHandler (void)
 {
@@ -38,6 +41,8 @@ void TIM2_IRQHandler (void)
 {
 	uint32 state = TIM2->SR;														// ¶ÁÈ¡ÖÐ¶Ï×´Ì¬
 	TIM2->SR &= ~state;																// Çå¿ÕÖÐ¶Ï×´Ì¬
+	sprintf(str, "%f\n", a);
+	seekfree_wireless_send_buff(str);
 }
 
 void TIM5_IRQHandler (void)
