@@ -11,6 +11,19 @@
 		"seekfree_mt9v03x.h": "c",
 		"timer_us.h": "c",
 		"zf_camera.h": "c",
-		"isr.h": "c"
+		"isr.h": "c",
+		"seekfree_absolute_encoder.h": "c",
+		"seekfree_7725.h": "c",
+		"seekfree_18tft.h": "c",
+		"seekfree_font.h": "c",
+		"seekfree_iic.h": "c",
+		"seekfree_ips200_parallel8.h": "c",
+		"seekfree_l3g4200d.h": "c",
+		"seekfree_mma8451.h": "c",
+		"seekfree_mpu6050.h": "c",
+		"seekfree_tsl1401.h": "c",
+		"zf_tim.h": "c",
+		"zf_pit.h": "c",
+		"zf_fsmc.h": "c"
 	}
 }

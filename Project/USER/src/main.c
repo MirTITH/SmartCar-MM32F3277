@@ -65,7 +65,7 @@ int main(void)
 	gpio_init(KEY, GPI, GPIO_HIGH, GPI_PULL_UP);									// 初始化引脚为上拉输入 默认高电平
 	gpio_init(LED1, GPO, GPIO_HIGH, GPO_PUSH_PULL);									// 初始化引脚为推挽输出 默认高电平
 	gpio_init(LED2, GPO, GPIO_HIGH, GPO_PUSH_PULL);									// 初始化引脚为推挽输出 默认高电平
-	tim_interrupt_init_ms(TIM_2, 1000, 0, 1);
+	// tim_interrupt_init_ms(TIM_2, 1000, 0, 1);
 	// pwm_init(TIM_2, TIM_2_CH1_A00, 440, PWM_DUTY_MAX / 2);
 	//此处编写用户代码(例如：外设初始化代码等)
 
@@ -77,12 +77,12 @@ int main(void)
 
 	while(1)
 	{
-		a += 0.1;
+		// a += 0.1;
 		// sprintf(time_str, "%lld\n", Timer_us_Get());
 		// seekfree_wireless_send_buff(time_str);		// 发送测试信息
 		// systick_delay_ms(10);
 
-	// ips114_displayimage032(mt9v03x_image[0], MT9V03X_W, MT9V03X_H);
+	ips114_displayimage032(mt9v03x_image[0], MT9V03X_W, MT9V03X_H);
 		// if(mt9v03x_finish_flag)
 		// {	
 		// 	camera_frame++;
