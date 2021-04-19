@@ -83,6 +83,7 @@ int main(void)
 		// systick_delay_ms(10);
 
 	ips114_displayimage032(mt9v03x_image[0], MT9V03X_W, MT9V03X_H);
+		printf("a\n");
 		// if(mt9v03x_finish_flag)
 		// {	
 		// 	camera_frame++;
