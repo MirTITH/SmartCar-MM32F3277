@@ -1,7 +1,31 @@
-unsigned long long	8474723
-long long			8474450
-long				8244341
-int		8246175
-short	79208
-double	781277
-float	586897
+优化等级0
+芯片选择近似pack
+unsigned long long	847 4723
+long long			847 4450
+long				824 4341
+int					824 6175
+short				  7 9208（测量数据有误，勿信）
+double				 78 1277
+float				 58 6897
+
+
+优化等级3
+芯片选择MM32F3277
+unsigned long long	 861 4535.624
+long long			 861 3454.217
+long				2996 4589.46
+int					2997 1099.7
+double				  78 8054.9725
+float				 166 3828
+short (范围太小，测不了)
+
+优化等级0
+芯片选择MM32F3277
+unsigned long long	
+long long			
+long				
+int					 826 8373.609
+short	
+double	
+float	
+
